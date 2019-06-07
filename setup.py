@@ -1,13 +1,14 @@
 #!/usr/bin/env python3.7
 
 from setuptools import setup
+from shellp import __version__
 
 with open('README.md', 'r') as f:
 	readme = f.read()
 
 setup(
 	name='shellp',
-	version='0.0.0',
+	version=__version__,
 	description='An advanced shell',
 	long_description=readme,
 	long_description_content_type='text/markdown',
@@ -18,7 +19,7 @@ setup(
 	packages=['shellp'],
 	entry_points={
 		'console_scripts': [
-			'shellp = shellp.__main__:run',
+			'shellp = shellp.run:run',
 		],
 	},
 	classifiers=[
@@ -29,4 +30,7 @@ setup(
 		'Topic :: System :: Shells',
 	],
 	python_requires='>=3.6',
+	install_requies=[
+		'beautiful-ansi'
+	],
 )
