@@ -30,7 +30,7 @@ setup(
 		'Topic :: System :: Shells',
 	],
 	python_requires='>=3.6',
-	install_requies=[
+	install_requires=[
 		'beautiful-ansi'
 	],
 )
