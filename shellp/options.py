@@ -23,7 +23,7 @@ options = {
 if config is not None:
 	for key, val in config.__dict__:
 		# If the option type is a set, then merge the user's option with the default one
-		if type(val) == set and key in options.keys():
+		if isinstance(val, set) and key in options.keys():
 			options[key] = options[key] | val
 		else:
 			options[key] = val
