@@ -12,11 +12,8 @@ except ImportError:
 
 # Define the default options
 options = {
-	'ps1': '{cwd} {symbol} ',
-	'ps2': '> ',
-	'confirm_commands': {
-		'rm',
-	},
+	'ps1': '{style.yellow}{cwd} {git_branch} {symbol} ',
+	'ps2': '{style.yellow}> ',
 }
 
 # Load options from config.py if it exists

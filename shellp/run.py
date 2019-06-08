@@ -8,16 +8,22 @@ from .options import options
 import sys
 from .parse_prompt import parse_prompt
 import os
+#import subprocess
 
 
 def main():
 	while True:
-		cmd = input(parse_prompt(options['ps1']))
+		try:
+			cmd = input(parse_prompt(options['ps1']))
+		except (EOFError, KeyboardInterrupt):
+			print('\nType "exit" to exit ShellP.')
 		
-		if cmd == 'exit':
-			sys.exit(0)
 		else:
-			os.system(cmd)
+			if cmd == 'exit':
+#				print('Exiting ShellP...')
+				sys.exit(0)
+			else:
+				os.system(cmd)
 
 
 def run():

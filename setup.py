@@ -31,6 +31,7 @@ setup(
 	],
 	python_requires='>=3.6',
 	install_requires=[
-		'beautiful-ansi'
+		'beautiful-ansi',
+		'pygit2'
 	],
 )
