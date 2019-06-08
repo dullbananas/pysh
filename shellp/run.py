@@ -1,32 +1,29 @@
 '''Main script'''
-from .__init__ import __version__
-if __name__ == '__main__':
-	print('Starting ShellP version {}'.format(__version__))
-
-#import beautiful_ansi as style
-from .options import options
-import sys
-from .parse_prompt import parse_prompt
-import os
-#import subprocess
 
 
 def main():
+	from .options import options
+	from sys import exit
+	from .parse_prompt import parse_prompt
+	from os import system
+	
 	while True:
 		try:
-			cmd = input(parse_prompt(options['ps1']) + '{style.clear}')
+			cmd = input(parse_prompt(options['ps1'] + '{style.clear}'))
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
 		else:
 			if cmd == 'exit':
 #				print('Exiting ShellP...')
-				sys.exit(0)
+				exit(0)
 			else:
-				os.system(cmd)
+				system(cmd)
 
 
 def run():
+	from .__init__ import __version__
+	print('Starting ShellP {}...'.format(__version__))
 	main()
 
 
