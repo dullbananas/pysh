@@ -14,7 +14,7 @@ import os
 def main():
 	while True:
 		try:
-			cmd = input(parse_prompt(options['ps1']))
+			cmd = input(parse_prompt(options['ps1']) + '{style.clear}')
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
