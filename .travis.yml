@@ -1,5 +1,6 @@
 dist: xenial
 language: python
+cache: pip
 python:
   - "3.6"
   - "3.7"
@@ -7,6 +8,5 @@ python:
   - "3.8-dev"
   - "nightly"
 install:
-  - pip install .
-  - pip install pytest --upgrade
-script: python -m pytest
+  - pip install . pytest pytest-cov coverage codacy-coverage --upgrade
+script: make travisbuild
