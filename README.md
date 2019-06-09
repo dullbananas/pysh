@@ -45,3 +45,4 @@ Here are the values you can use in `ps1`:
 | `hostname`       | The hostname of your computer                                   |
 | `shellp_version` | The installed version of ShellP                                 |
 | `symbol`         | `#` if you are ~~Groot~~ root, otherwise `$`                    |
+| `style`          | [The `beautiful_ansi` module](https://github.com/Carrene/beautiful-ansi/blob/master/beautiful_ansi.py) |
