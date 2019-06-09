@@ -15,7 +15,6 @@ def main():
 		
 		else:
 			if cmd == 'exit':
-#				print('Exiting ShellP...')
 				exit(0)
 			else:
 				system(cmd)

@@ -17,7 +17,7 @@ options = {
 }
 
 # Load options from config.py if it exists
-if config is not None:
+if config is not None and '--no-user-config' not in sys.argv and '-U' not in sys.argv:
 	for key, val in config.__dict__.items():
 		# If the option type is a set, then merge the user's option with the default one
 		if isinstance(val, set) and key in options.keys():
