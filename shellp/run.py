@@ -5,7 +5,8 @@ def main():
 	from .options import options
 	from sys import exit
 	from .parse_prompt import parse_prompt
-	from os import system
+	from os import system, chdir
+	from os.path import abspath
 	
 	while True:
 		try:
@@ -16,6 +17,8 @@ def main():
 		else:
 			if cmd == 'exit':
 				exit(0)
+			elif cmd.startswith('cd '):
+				chdir(abspath(cmd[3:]))
 			else:
 				system(cmd)
 
