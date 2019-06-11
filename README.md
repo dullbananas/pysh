@@ -4,6 +4,7 @@
 ![license](https://img.shields.io/github/license/dullbananas/shellp.svg?color=blue)
 ![pypi](https://img.shields.io/pypi/v/shellp.svg?color=blue)
 ![PyPI - Status](https://img.shields.io/pypi/status/shellp.svg?color=blue)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/shellp.svg)
 
 # ShellP
 ShellP is a shell implemented in Python and currently in pre-alpla development.
