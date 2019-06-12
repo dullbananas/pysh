@@ -12,7 +12,7 @@ except ImportError:
 
 # Define the default options
 options = {
-	'ps1': '{style.yellow}{cwd} {git_branch} {symbol} ',
+	'ps1': '{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 }
 
