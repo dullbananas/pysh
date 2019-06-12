@@ -6,7 +6,8 @@ def main():
 	from sys import exit
 	from .parse_prompt import parse_prompt
 	from os import system, chdir
-	from os.path import abspath
+	from os import path
+	from pathlib import Path
 	
 	while True:
 		try:
@@ -15,12 +16,23 @@ def main():
 			print('\nType "exit" to exit ShellP.')
 		
 		else:
-			if cmd == 'exit':
-				exit(0)
-			elif cmd.startswith('cd '):
-				chdir(abspath(cmd[3:]))
-			else:
-				system(cmd)
+			try:
+				if cmd == 'exit':
+					exit(0)
+				elif cmd == 'cd':
+					chdir(Path.home())
+				elif cmd.startswith('cd '):
+					path_ = cmd[3:]
+					if path_[0] == '~':
+						path_ = path.join(Path.home(), path_[2:])
+					try:
+						chdir(path.abspath(path_))
+					except:
+						system(cmd)
+				else:
+					system(cmd)
+			except Exception as e:
+				print(repr(e))
 
 
 def run():
