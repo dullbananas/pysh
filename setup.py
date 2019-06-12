@@ -9,7 +9,7 @@ with open('README.md', 'r') as f:
 setup(
 	name='shellp',
 	version=__version__,
-	description='An advanced shell',
+	description='An advanced and easy to configure shell',
 	long_description=readme,
 	long_description_content_type='text/markdown',
 	author='Dull Bananas',
