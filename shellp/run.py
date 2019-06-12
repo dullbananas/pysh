@@ -27,12 +27,17 @@ def main():
 						path_ = path.join(Path.home(), path_[2:])
 					try:
 						chdir(path.abspath(path_))
-					except:
-						system(cmd)
+					except FileNotFoundError:
+						if path_ == '--help':
+							print('cd: usage: cd [dir]')
+						else:
+							print('cd: no such file or directory')
+					except NotADirectoryError:
+						print('cd: specified path is not a directory')
 				else:
 					system(cmd)
 			except Exception as e:
-				print(repr(e))
+				print('unexpected error: ' + repr(e))
 
 
 def run():
