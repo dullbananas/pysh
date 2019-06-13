@@ -2,11 +2,10 @@
 
 
 def main():
-	from .options import options
+	from .options import options, load_config
 	from sys import exit
 	from .parse_prompt import parse_prompt
-	from os import system, chdir
-	from os import path
+	from os import system, chdir, path
 	from pathlib import Path
 	
 	while True:
@@ -40,8 +39,12 @@ def main():
 						print('cd: specified path is not a directory')
 				# eval python statement
 				elif cmd.startswith('eval:'):
-					statement = cmd[5:]
+					statement = cmd[5:].replace('\\n', '\n')
 					print(eval(statement))
+				# reload user config
+				elif cmd == 'reload':
+					load_config()
+					print('User config reloaded')
 				# run command
 				else:
 					system(cmd)
