@@ -10,6 +10,7 @@ def main():
 	from pathlib import Path
 	
 	while True:
+		# get input from user
 		try:
 			cmd = input(parse_prompt(options['ps1'] + '{style.clear}'))
 		except (EOFError, KeyboardInterrupt):
@@ -17,10 +18,13 @@ def main():
 		
 		else:
 			try:
+				# exit ShellP
 				if cmd == 'exit':
 					exit(0)
+				# cd to home directory
 				elif cmd == 'cd':
 					chdir(Path.home())
+				# cd to custom dir
 				elif cmd.startswith('cd '):
 					path_ = cmd[3:]
 					if path_[0] == '~':
@@ -34,6 +38,11 @@ def main():
 							print('cd: no such file or directory')
 					except NotADirectoryError:
 						print('cd: specified path is not a directory')
+				# eval python statement
+				elif cmd.startswith('eval:'):
+					statement = cmd[5:]
+					print(eval(statement))
+				# run command
 				else:
 					system(cmd)
 			except Exception as e:
