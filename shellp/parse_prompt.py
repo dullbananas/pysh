@@ -32,5 +32,6 @@ def parse_prompt(prompt, **kwargs):
 	shellp_version = __version__
 	symbol = '#' if os.getuid() == 0 else '$'
 	time = Time()
+	uid = os.getuid()
 	
 	return prompt.format(style=style, **locals(), **kwargs)
