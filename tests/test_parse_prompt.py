@@ -6,4 +6,4 @@ def test_prompt_symbol():
 
 def test_prompt_platform():
 	import platform
-	assert parse_prompt('{plaform["processor"]}') == platform.processor()
+	assert parse_prompt('{platform["processor"]}') == platform.processor()
