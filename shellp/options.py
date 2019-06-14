@@ -16,7 +16,7 @@ def import_config():
 
 # Define the default options
 options = {
-	'ps1': '{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
+	'ps1': '{time["%H:%M:%S"]} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,
 }
