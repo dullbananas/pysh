@@ -3,15 +3,27 @@
 
 def main():
 	from .options import options, load_config
-	from sys import exit
+	import sys
 	from .parse_prompt import parse_prompt
 	from os import system, chdir, path
 	from pathlib import Path
+	from select import select
 	
 	while True:
 		# get input from user
 		try:
-			cmd = input(parse_prompt(options['ps1'] + '{style.clear}'))
+			prompt = parse_prompt(options['ps1'] + '{style.clear}')
+			if options['timeout'] == 0:
+				cmd = input(prompt)
+			else:
+				print(prompt, end='')
+				i, _, _ = select([sys.stdin], [], [], float(options['timeout']))
+				if i:
+					cmd = sys.stdin.readline().strip()
+				else:
+					print('\nTimeout exceded ({} seconds)'.format(options['timeout']))
+					sys.exit(0)
+				del i
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
@@ -19,7 +31,7 @@ def main():
 			try:
 				# exit ShellP
 				if cmd == 'exit':
-					exit(0)
+					sys.exit(0)
 				# cd to home directory
 				elif cmd == 'cd':
 					chdir(Path.home())

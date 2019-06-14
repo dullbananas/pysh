@@ -24,6 +24,8 @@ You can have a custom configuration script in `~/.shellp/config.py` that overrid
 | Name   | Description                                                                             |
 | :----: | --------------------------------------------------------------------------------------- |
 | `ps1`  | The prompt that shows before every command you type. See below for the format of `ps1`. |
+| `ps2`  | Currently not used                                                                      |
+| `timeout` | The timeout for command input in seconds. If set to `0`, there is no timeout.        |
 
 #### PS1 Format
 ShellP uses Python's `str.format()` method on `ps1` to format it, unlike other shells which use ugly, unreadable escape codes. Here is an example of a config.py that sets the `ps1` option:

@@ -18,6 +18,7 @@ def import_config():
 options = {
 	'ps1': '{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
+	'timeout': 0,
 }
 
 # Load options from config.py if it exists
