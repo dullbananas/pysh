@@ -9,7 +9,7 @@ python:
   - "nightly"
 before_install:
   - sudo apt-get update
-  - sudo apt-get install libgit2
+  - sudo apt-get install libgit2-24
 install:
   - pip install . pytest pytest-cov coverage codacy-coverage --upgrade
 script: make travisbuild
