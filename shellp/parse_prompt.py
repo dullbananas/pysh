@@ -6,6 +6,7 @@ import platform as pf
 import pygit2
 from time import strftime, gmtime
 from _pygit2 import GitError
+from getpass import getuser
 
 class Platform:
 	def __getitem__(self, name):
@@ -33,5 +34,6 @@ def parse_prompt(prompt, **kwargs):
 	symbol = '#' if os.getuid() == 0 else '$'
 	time = Time()
 	uid = os.getuid()
+	user = getuser()
 	
 	return prompt.format(style=style, **locals(), **kwargs)
