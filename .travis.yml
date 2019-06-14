@@ -7,6 +7,9 @@ python:
   - "3.7-dev"
   - "3.8-dev"
   - "nightly"
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install libgit2
 install:
   - pip install . pytest pytest-cov coverage codacy-coverage --upgrade
 script: make travisbuild
