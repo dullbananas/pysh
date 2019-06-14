@@ -2,9 +2,17 @@
 import os
 from .__init__ import __version__
 import beautiful_ansi as style
-import platform
+import platform as pf
 import pygit2
 from _pygit2 import GitError
+
+class Platform:
+	def __getitem__(self, name):
+		name = name[1:-1] # remove quotes placed by str.format
+		try:
+			return pf.__dict__[name]()
+		except KeyError:
+			return '[{}]'.format(name)
 
 def parse_prompt(prompt, **kwargs):
 	bell = chr(7)
@@ -13,7 +21,8 @@ def parse_prompt(prompt, **kwargs):
 		git_branch = pygit2.Repository('.').head.shorthand
 	except GitError:
 		git_branch = ''
-	hostname = platform.node()
+	hostname = pf.node()
+	platform = Platform()
 	shellp_version = __version__
 	symbol = '#' if os.getuid() == 0 else '$'
 	
