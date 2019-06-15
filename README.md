@@ -9,6 +9,11 @@
 # ShellP
 ShellP is a shell implemented in Python and currently in pre-alpla development.
 
+## Project Links
+  * [GitHub repo](https://github.com/dullbananas/shellp)
+  * [Contributing guidelines](https://github.com/dullbananas/shellp/blob/master/CONTRIBUTING.md)
+  * [PyPI project](https://pypi.org/project/shellp)
+
 ## Usage
 ### Installation
 ShellP supports Python 3.6 and newer; make sure you have a supported version. Just run this to install:
@@ -25,7 +30,7 @@ You can have a custom configuration script in `~/.shellp/config.py` that overrid
 | :----: | --------------------------------------------------------------------------------------- |
 | `ps1`  | The prompt that shows before every command you type. See below for the format of `ps1`. |
 | `ps2`  | Currently not used                                                                      |
-| `timeout` | The timeout for command input in seconds. If set to `0`, there is no timeout.        |
+| `timeout` | The timeout for command input in seconds. If set to `0`, there is no timeout. This is like `$TMOUT` in Bash. |
 
 #### PS1 Format
 ShellP uses Python's `str.format()` method on `ps1` to format it, unlike other shells which use ugly, unreadable escape codes. Here is an example of a config.py that sets the `ps1` option:
@@ -46,6 +51,20 @@ Here are the values you can use in `ps1`:
 | `cwd`            | The current directory                                           |
 | `git_branch`     | The current git branch, or nothing if you are not in a git repo |
 | `hostname`       | The hostname of your computer                                   |
+| `platform` | A dictionary mapping the contents of the `platform` module, e.g. `platform["processor"]` |
 | `shellp_version` | The installed version of ShellP                                 |
 | `symbol`         | `#` if you are ~~Groot~~ root, otherwise `$`                    |
 | `style`          | [The `beautiful_ansi` module](https://github.com/Carrene/beautiful-ansi/blob/master/beautiful_ansi.py) |
+| `time` | The current date and time formatted with [`strftime`](http://strftime.org) |
+| `uid` | The current UID (user ID) |
+| `user` | The current usersame |
+
+
+### Commands
+Here are the special commands you can use ShellP:
+
+| Name | Description |
+| :--: | ----------- |
+| `eval:*` | Evaluate a Python expression, e.g. `eval:2+2` runs `eval('2+2')` and prints 4 |
+| `exit` | Exit ShellP with code `0` |
+| `reload` | Reloads your `~/.shellp/config.py` file |
