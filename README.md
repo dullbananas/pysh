@@ -9,6 +9,11 @@
 # ShellP
 ShellP is a shell implemented in Python and currently in pre-alpla development.
 
+## Project Links
+  * [GitHub repo](https://github.com/dullbananas/shellp)
+  * [Contributing guidelines](https://github.com/dullbananas/shellp/blob/master/CONTRIBUTING.md)
+  * [PyPI project](https://pypi.org/project/shellp)
+
 ## Usage
 ### Installation
 ShellP supports Python 3.6 and newer; make sure you have a supported version. Just run this to install:
