@@ -16,6 +16,7 @@ def import_config():
 
 # Define the default options
 options = {
+	'aliases': {},
 	'ps1': '{time["%H:%M:%S"]} {user}@{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,

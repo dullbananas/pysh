@@ -24,6 +24,10 @@ def main():
 					print('\nTimeout exceded ({} seconds)'.format(options['timeout']))
 					sys.exit(0)
 				del i
+			# Handle aliases
+			for alias, replacement in options['aliases'].items():
+				if cmd.startswith(alias):
+					cmd = replacement + cmd[len(alias):]
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
