@@ -3,6 +3,7 @@ import sys
 import pathlib
 import os
 import importlib
+from .parse_bash_aliases import parse_files as parse_aliases
 
 def import_config():
 	global config
@@ -17,6 +18,7 @@ def import_config():
 # Define the default options
 options = {
 	'aliases': {},
+	'bash_alias_files': [],
 	'ps1': '{time["%H:%M:%S"]} {user}@{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,
@@ -32,6 +34,8 @@ def set_config():
 				options[key] = options[key] | val
 			else:
 				options[key] = val
+	# Load bash aliases
+	options['aliases'] = {**parse_aliases(options['bash_alias_files']), **options['aliases']}
 
 def load_config():
 	import_config()
