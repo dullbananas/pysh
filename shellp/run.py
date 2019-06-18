@@ -26,8 +26,14 @@ def main():
 				del i
 			# Handle aliases
 			for alias, replacement in options['aliases'].items():
-				if cmd.startswith(alias):
-					cmd = replacement + cmd[len(alias):]
+				try:
+					if cmd.startswith(alias) and cmd[len(alias)] == ' ':
+						cmd = replacement + cmd[len(alias):]
+						break
+				except IndexError:
+					if cmd == alias:
+						cmd = replacement
+						break
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
