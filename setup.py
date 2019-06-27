@@ -23,10 +23,12 @@ setup(
 		],
 	},
 	classifiers=[
-		'Development Status :: 2 - Pre-Alpha',
+		'Development Status :: 3 - Alpha',
 		'Environment :: Console',
 		'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
 		'Natural Language :: English',
+		'Operating System :: POSIX',
+		'Programming Language :: Python :: 3 :: Only',
 		'Topic :: System :: Shells',
 	],
 	python_requires='>=3.6',
