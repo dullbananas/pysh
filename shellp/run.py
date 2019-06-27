@@ -2,17 +2,20 @@
 
 
 def main():
+	elapsed = 0
+	
 	from .options import options, load_config
 	import sys
 	from .parse_prompt import parse_prompt
 	from os import system, chdir, path
 	from pathlib import Path
 	from select import select
+	import time
 	
 	while True:
 		# get input from user
 		try:
-			prompt = parse_prompt(options['ps1'] + '{style.clear}')
+			prompt = parse_prompt(options['ps1'] + '{style.clear}', exec_time=round(elapsed,1))
 			if options['timeout'] == 0:
 				cmd = input(prompt)
 			else:
@@ -38,6 +41,7 @@ def main():
 			print('\nType "exit" to exit ShellP.')
 		
 		else:
+			start_time = time.time()
 			try:
 				# exit ShellP
 				if cmd == 'exit':
@@ -72,6 +76,7 @@ def main():
 					system(cmd)
 			except Exception as e:
 				print('unexpected error: ' + repr(e))
+			elapsed = time.time() - start_time
 
 
 def run():
