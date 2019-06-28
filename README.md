@@ -7,7 +7,12 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/shellp.svg)
 
 # ShellP
-ShellP is a shell implemented in Python and currently in pre-alpla development.
+ShellP is a shell implemented in Python and currently in alpla stage of development.
+
+## Advantages over other shells
+  * Easy to configure (e.g. PS1 value is more readable and easier to make yourself)
+  * Easy to install without root access
+  * Variety of values that you can use for PS1, including git branch and execution duration of previous command
 
 ## Project Links
   * [GitHub repo](https://github.com/dullbananas/shellp)
@@ -18,7 +23,7 @@ ShellP is a shell implemented in Python and currently in pre-alpla development.
 ### Installation
 ShellP supports Python 3.6 and newer; make sure you have a supported version. Just run this to install:
 ```
-pip3 install shellp
+pip3 install --user shellp
 ```
 If you are not using a supported version, then shame on you.
 ### Running ShellP
@@ -28,6 +33,8 @@ You can have a custom configuration script in `~/.shellp/config.py` that overrid
 
 | Name   | Description                                                                             |
 | :----: | --------------------------------------------------------------------------------------- |
+| `aliases` | Dictionary mapping shortcuts to the commands they are replaced with (e.g. `{'gc': 'git commit'}`) |
+| `bash_alias_files` | Array of paths to bash files to extract aliases from |
 | `ps1`  | The prompt that shows before every command you type. See below for the format of `ps1`. |
 | `ps2`  | Currently not used                                                                      |
 | `timeout` | The timeout for command input in seconds. If set to `0`, there is no timeout. This is like `$TMOUT` in Bash. |
@@ -49,13 +56,14 @@ Here are the values you can use in `ps1`:
 | :--------------: | --------------------------------------------------------------- |
 | `bell`           | An ASCII bell character                                         |
 | `cwd`            | The current directory                                           |
+| `exec_time` | Execution duration of previous command in seconds, rounded to nearest 10th |
 | `git_branch`     | The current git branch, or nothing if you are not in a git repo |
 | `hostname`       | The hostname of your computer                                   |
 | `platform` | A dictionary mapping the contents of the `platform` module, e.g. `platform["processor"]` |
 | `shellp_version` | The installed version of ShellP                                 |
 | `symbol`         | `#` if you are ~~Groot~~ root, otherwise `$`                    |
 | `style`          | [The `beautiful_ansi` module](https://github.com/Carrene/beautiful-ansi/blob/master/beautiful_ansi.py) |
-| `time` | The current date and time formatted with [`strftime`](http://strftime.org) |
+| `time` | The current date and time formatted with [`strftime`](http://strftime.org), e.g. `{time["%H:%M"]}` |
 | `uid` | The current UID (user ID) |
 | `user` | The current usersame |
 
