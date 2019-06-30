@@ -7,7 +7,9 @@ def modify_arg(arg):
 	return arg
 
 
-def split_cmd(cmd, aliases):
+def split_cmd(cmd, aliases=None):
+	if aliases == None:
+		aliases = {}
 	cmd = shlex.split(cmd)
 	if len(cmd) == 0:
 		return []
