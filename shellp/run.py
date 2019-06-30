@@ -7,10 +7,14 @@ def main():
 	from .options import options, load_config
 	import sys
 	from .parse_prompt import parse_prompt
-	from os import system, chdir, path
+	from .split_cmd import split_cmd
+	from os import chdir, path
+	#import os
 	from pathlib import Path
 	from select import select
 	import time
+	import subprocess
+	import traceback
 	
 	while True:
 		# get input from user
@@ -27,33 +31,28 @@ def main():
 					print('\nTimeout exceded ({} seconds)'.format(options['timeout']))
 					sys.exit(0)
 				del i
-			# Handle aliases
-			for alias, replacement in options['aliases'].items():
-				try:
-					if cmd.startswith(alias) and cmd[len(alias)] == ' ':
-						cmd = replacement + cmd[len(alias):]
-						break
-				except IndexError:
-					if cmd == alias:
-						cmd = replacement
-						break
+			# Get individual arguments of the inputted command
+			cmd = split_cmd(cmd, options['aliases'])
+			#print(cmd)
+			if cmd == []:
+				continue
 		except (EOFError, KeyboardInterrupt):
 			print('\nType "exit" to exit ShellP.')
 		
 		else:
+			if options['debug']:
+				print(cmd)
 			start_time = time.time()
 			try:
 				# exit ShellP
-				if cmd == 'exit':
+				if cmd[0] == 'exit':
 					sys.exit(0)
 				# cd to home directory
-				elif cmd == 'cd':
+				elif cmd == ['cd']:
 					chdir(Path.home())
 				# cd to custom dir
-				elif cmd.startswith('cd '):
-					path_ = cmd[3:]
-					if path_[0] == '~':
-						path_ = path.join(Path.home(), path_[2:])
+				elif cmd[0] == 'cd':
+					path_ = cmd[1]
 					try:
 						chdir(path.abspath(path_))
 					except FileNotFoundError:
@@ -64,18 +63,24 @@ def main():
 					except NotADirectoryError:
 						print('cd: specified path is not a directory')
 				# eval python statement
-				elif cmd.startswith('eval:'):
-					statement = cmd[5:].replace('\\n', '\n')
-					print(eval(statement))
+				elif cmd[0] == 'eval':
+					print(eval(cmd[1]))
 				# reload user config
-				elif cmd == 'reload':
+				elif cmd[0] == 'reload':
 					load_config()
 					print('User config reloaded')
 				# run command
 				else:
-					system(cmd)
-			except Exception as e:
-				print('unexpected error: ' + repr(e))
+					try:
+						proc = subprocess.Popen(cmd)
+						proc.communicate() # Wait until command finishes
+					except OSError as e:
+						print(f'Error {e.errno}: {e.strerror}')
+			except Exception:
+				print(traceback.format_exc())
+				poop = input('Do you want to exit ShellP? (y/n) ')
+				if poop == 'y':
+					sys.exit(1)
 			elapsed = time.time() - start_time
 
 

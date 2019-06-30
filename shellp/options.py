@@ -19,6 +19,9 @@ def import_config():
 options = {
 	'aliases': {},
 	'bash_alias_files': [],
+	'debug': False,
+	'env_lists': {},
+	'env_vars': {},
 	'ps1': '{time["%H:%M:%S"]} {user}@{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,
@@ -36,6 +39,17 @@ def set_config():
 				options[key] = val
 	# Load bash aliases
 	options['aliases'] = {**parse_aliases(options['bash_alias_files']), **options['aliases']}
+	# Load environment variables
+	os.environ = {**os.environ, **options['env_vars']}
+	# Load environment lists
+	for name in options['env_lists'].keys():
+		value_set = options['env_lists'][name] # The list/tuple/etc. of values to be joined by colons
+		try:
+			if not os.environ[name].startswith(':'):
+				os.environ[name] = ':' + os.environ[name]
+		except KeyError:
+			os.environ[name] = ''
+		os.environ[name] = ':'.join(value_set) + os.environ[name]
 
 def load_config():
 	import_config()
