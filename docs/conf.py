@@ -82,8 +82,8 @@ html_theme = 'alabaster'
 #
 html_theme_options = {
 	'github_button': True,
-	'github_repo': 'dullbananas',
-	'github_user': 'shellp',
+	'github_user': 'dullbananas',
+	'github_repo': 'shellp',
 	'show_relbars': True,
 }
 
