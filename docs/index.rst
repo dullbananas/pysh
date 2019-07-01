@@ -12,3 +12,4 @@ Contents
    installation
    usage
    config
+   special
