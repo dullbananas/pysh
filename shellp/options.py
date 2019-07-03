@@ -18,6 +18,7 @@ def import_config():
 # Define the default options
 options = {
 	'aliases': {},
+	'arg_funcs': {},
 	'bash_alias_files': [],
 	'debug': False,
 	'env_lists': {},

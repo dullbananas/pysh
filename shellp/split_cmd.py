@@ -1,10 +1,19 @@
 import shlex
 import os
+from .options import options
 
 
 def modify_arg(arg):
-	arg = os.path.expanduser(arg)
-	return arg
+	result = arg
+	
+	if arg.startswith('$$'):
+		result = options['arg_funcs'][arg[2:]]()
+	elif arg.startswith('$'):
+		result = os.getenv(arg[1:], 'OH F**K THAT ENVIRONMENT VARIABLE DOESN\'T EXIST')
+	
+	result = str(result)
+	result = os.path.expanduser(result)
+	return result
 
 
 def split_cmd(cmd, aliases=None):
