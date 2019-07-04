@@ -26,7 +26,12 @@ def main():
 				print(prompt, end='')
 				i, _, _ = select([sys.stdin], [], [], float(options['timeout']))
 				if i:
-					cmd = sys.stdin.readline().strip()
+					cmd = sys.stdin.readline()
+					# Handle EOF
+					if cmd == '':
+						raise EOFError
+					else:
+						cmd = cmd.strip()
 				else:
 					print('\nTimeout exceded ({} seconds)'.format(options['timeout']))
 					sys.exit(0)
@@ -36,8 +41,11 @@ def main():
 			#print(cmd)
 			if cmd == []:
 				continue
-		except (EOFError, KeyboardInterrupt):
-			print('\nType "exit" to exit ShellP.')
+		except KeyboardInterrupt:
+			print()
+		except EOFError:
+			print('exit')
+			sys.exit(0)
 		
 		else:
 			if options['debug']:
