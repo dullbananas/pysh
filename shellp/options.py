@@ -23,7 +23,7 @@ options = {
 	'debug': False,
 	'env_lists': {},
 	'env_vars': {},
-	'ps1': '{time["%H:%M:%S"]} {user}@{hostname} {style.yellow}{cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
+	'ps1': '{time["%H:%M:%S"]} {cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,
 }
