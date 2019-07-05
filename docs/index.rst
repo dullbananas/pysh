@@ -12,4 +12,5 @@ Contents
    installation
    usage
    config
+   features
    special

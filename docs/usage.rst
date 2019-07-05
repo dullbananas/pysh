@@ -13,4 +13,4 @@ If ``~/.local/bin`` is in your ``$PATH``, you can also use this command::
 
 Exiting ShellP
 --------------
-To exit ShellP, type the ``exit`` command.
+To exit ShellP, type the ``exit`` command or send an EOF (``Ctrl+D`` on Linux).
