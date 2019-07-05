@@ -12,5 +12,5 @@ Contents
    installation
    usage
    config
-   features
+   features/index
    special
