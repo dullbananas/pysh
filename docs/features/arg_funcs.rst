@@ -1,6 +1,13 @@
 Argument Functions
 ==================
 
+Here is an example showing what this feature does:
+
+.. code-block: bash
+
+   $ echo $$func_name
+   func_return_value
+
 Argument functions allow you to run functions when typing commands and using
 their return value as the resulting argument. Here is an example of a config file
 that defines one that allows you to insert random numbers into your commands::
