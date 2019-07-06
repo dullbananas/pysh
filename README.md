@@ -8,7 +8,18 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/shellp.svg)
 
 # ShellP
-ShellP is a shell implemented in Python and currently in alpla stage of development.
+ShellP is a shell implemented in Python and currently in alpla stage of development. This is an example shell session that utilizes [argument functions](https://shellp.readthedocs.io/en/latest/features/arg_funcs.html):
+
+```
+$ echo $$random
+64
+$ echo $$random
+40
+$ echo $$tempfile
+/tmp/my_temp_file.txt
+$ echo $$weekday
+Thursday
+```
 
 ## Advantages over other shells
   * Easy to configure (e.g. PS1 value is more readable and easier to make yourself)
