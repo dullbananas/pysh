@@ -8,10 +8,9 @@ def main():
 	import sys
 	from .parse_prompt import parse_prompt
 	from .split_cmd import split_cmd
+	from .read_cmd import read_cmd
 	from os import chdir, path
-	#import os
 	from pathlib import Path
-	from select import select
 	import time
 	import subprocess
 	import traceback
@@ -19,23 +18,8 @@ def main():
 	while True:
 		# get input from user
 		try:
-			prompt = parse_prompt(options['ps1'] + '{style.clear}', exec_time=round(elapsed,1))
-			if options['timeout'] == 0:
-				cmd = input(prompt)
-			else:
-				print(prompt, end='')
-				i, _, _ = select([sys.stdin], [], [], float(options['timeout']))
-				if i:
-					cmd = sys.stdin.readline()
-					# Handle EOF
-					if cmd == '':
-						raise EOFError
-					else:
-						cmd = cmd.strip()
-				else:
-					print('\nTimeout exceded ({} seconds)'.format(options['timeout']))
-					sys.exit(0)
-				del i
+			prompt = parse_prompt(options['ps1'], exec_time=round(elapsed,1))
+			cmd = read_cmd(prompt, options['timeout'])
 			# Get individual arguments of the inputted command
 			cmd = split_cmd(cmd, options['aliases'])
 			#print(cmd)
@@ -94,7 +78,7 @@ def main():
 
 def run():
 	from .__init__ import __version__
-	print('Starting ShellP {}...'.format(__version__))
+	print('Starting ShellP {}'.format(__version__))
 	main()
 
 

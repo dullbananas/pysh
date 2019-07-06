@@ -36,4 +36,4 @@ def parse_prompt(prompt, **kwargs):
 	uid = os.getuid()
 	user = getuser()
 	
-	return prompt.format(style=style, **locals(), **kwargs)
+	return prompt.format(style=style, **locals(), **kwargs) + style.clear
