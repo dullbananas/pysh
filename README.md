@@ -26,6 +26,20 @@ Thursday
   * Easy to install without root access
   * Variety of values that you can use for PS1, including git branch and execution duration of previous command
 
+
+## Basic Usage
+Install ShellP:
+
+```
+pip3 install --user shellp
+```
+
+Start ShellP:
+
+```
+python3 -m shellp
+```
+
 ## Project Links
   * [Documentation](https://shellp.readthedocs.io/en/latest/)
   * [GitHub repo](https://github.com/dullbananas/shellp)
