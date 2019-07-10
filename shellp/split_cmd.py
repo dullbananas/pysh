@@ -1,6 +1,7 @@
 import shlex
 import os
 from .options import options
+from . import utils
 
 
 def modify_arg(arg):
@@ -16,12 +17,15 @@ def modify_arg(arg):
 	return result
 
 
-def split_cmd(cmd, aliases=None):
-	if aliases == None:
-		aliases = {}
+def split_cmd(cmd):
 	cmd = shlex.split(cmd)
 	if len(cmd) == 0:
 		return []
+	cmd = replace_alias(cmd, options['aliases'])
+	return [modify_arg(arg) for arg in cmd]
+
+
+def replace_alias(cmd, aliases):
 	for alias, replacement in aliases.items():
 		if cmd[0] == alias:
 			try:
@@ -29,4 +33,11 @@ def split_cmd(cmd, aliases=None):
 			except IndexError:
 				cmd = shlex.split(replacement)
 			break
-	return [modify_arg(arg) for arg in cmd]
+	return cmd
+
+
+def split_pipes(cmd, aliases):
+	result = utils.split_list(cmd, (lambda x: x == '|'))
+	result = [replace_alias(i, aliases) for i in result]
+	
+	return result

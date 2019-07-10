@@ -4,6 +4,7 @@ import pathlib
 import os
 import importlib
 from .parse_bash_aliases import parse_files as parse_aliases
+from .utils import dot_shellp
 
 # Imports config.py
 def import_config():

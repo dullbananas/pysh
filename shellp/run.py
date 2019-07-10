@@ -4,16 +4,14 @@
 def main():
 	elapsed = 0
 	
-	from .options import options, load_config
+	from .options import options
 	import sys
 	from .parse_prompt import parse_prompt
-	from .split_cmd import split_cmd
 	from .read_cmd import read_cmd
-	from os import chdir, path
-	from pathlib import Path
 	import time
 	import subprocess
 	import traceback
+	from . import builtin_commands, utils, run_pipes, split_cmd
 	
 	while True:
 		# get input from user
@@ -21,7 +19,7 @@ def main():
 			prompt = parse_prompt(options['ps1'], exec_time=round(elapsed,1))
 			cmd = read_cmd(prompt, options['timeout'])
 			# Get individual arguments of the inputted command
-			cmd = split_cmd(cmd, options['aliases'])
+			cmd = split_cmd.split_cmd(cmd)
 			#print(cmd)
 			if cmd == []:
 				continue
@@ -36,38 +34,24 @@ def main():
 				print(cmd)
 			start_time = time.time()
 			try:
-				# exit ShellP
-				if cmd[0] == 'exit':
-					sys.exit(0)
-				# cd to home directory
-				elif cmd == ['cd']:
-					chdir(Path.home())
-				# cd to custom dir
-				elif cmd[0] == 'cd':
-					path_ = cmd[1]
-					try:
-						chdir(path.abspath(path_))
-					except FileNotFoundError:
-						if path_ == '--help':
-							print('cd: usage: cd [dir]')
-						else:
-							print('cd: no such file or directory')
-					except NotADirectoryError:
-						print('cd: specified path is not a directory')
-				# eval python statement
-				elif cmd[0] == 'eval':
-					print(eval(cmd[1]))
-				# reload user config
-				elif cmd[0] == 'reload':
-					load_config()
-					print('User config reloaded')
+				# run builtin command
+				for func in utils.filter_roles(builtin_commands.__dict__.values(), 'cmd_func'):
+					if cmd[0] == func.name:
+						func(cmd)
+						break
+				
 				# run command
 				else:
 					try:
-						proc = subprocess.Popen(cmd)
-						proc.communicate() # Wait until command finishes
+						if '|' in cmd:
+							pipeline = split_cmd.split_pipes(cmd, options['aliases'])
+							utils.debug(pipeline)
+							run_pipes.run_pipeline(pipeline)
+						else:
+							proc = subprocess.Popen(cmd)
+							proc.communicate() # Wait until command finishes
 					except OSError as e:
-						print(f'Error {e.errno}: {e.strerror}')
+						print(f'OSError {e.errno}: {e.strerror}')
 			except Exception:
 				print(traceback.format_exc())
 				poop = input('Do you want to exit ShellP? (y/n) ')
