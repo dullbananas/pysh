@@ -1,21 +1,8 @@
 # Import .shellp/config.py from user directory
 import sys
-import pathlib
 import os
-import importlib
 from .parse_bash_aliases import parse_files as parse_aliases
-from .utils import dot_shellp
-
-# Imports config.py
-def import_config():
-	global config
-	shellp_dir = os.path.join(pathlib.Path.home(), '.shellp')
-	if sys.path[0] != shellp_dir:
-		sys.path.insert(0, shellp_dir)
-	try:
-		import config
-	except ImportError:
-		config = None
+from . import utils
 
 # Define the default options
 options = {
@@ -31,9 +18,9 @@ options = {
 }
 
 # Load options from config.py if it exists
-def set_config():
-	global config
-	if (config is not None) and ('--no-user-config' not in sys.argv and '-U' not in sys.argv):
+def load_config():
+	if '--no-user-config' not in sys.argv and '-U' not in sys.argv:
+		config = utils.dot_shellp('config')
 		# Iterate through items defined in config.py
 		for key, val in config.__dict__.items():
 			# If the option type is a set, then merge the user's option with the default one
@@ -54,11 +41,5 @@ def set_config():
 		except KeyError:
 			os.environ[name] = ''
 		os.environ[name] = ':'.join(value_set) + os.environ[name]
-
-def load_config():
-	import_config()
-	if config is not None:
-		importlib.reload(config)
-	set_config()
 
 load_config()
