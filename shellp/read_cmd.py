@@ -1,3 +1,5 @@
+'''Defines an improved version of ``input()``'''
+
 import sys
 from select import select
 
