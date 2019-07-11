@@ -13,4 +13,4 @@ Contents
    usage
    config
    features/index
-   special
+   builtins

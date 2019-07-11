@@ -1,4 +1,4 @@
-Special Commands
+Builtin Commands
 ================
 
 ShellP has several built-in commands:
