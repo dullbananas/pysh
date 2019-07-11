@@ -4,6 +4,7 @@ from .cmd_funcs import command
 from . import utils, options
 import os
 import sys
+import builtins
 
 
 @command
@@ -21,7 +22,8 @@ def cd(args):
 
 @command
 def eval(args):
-	print(eval(args[1]))
+	expr = args[1]
+	print(builtins.eval(expr))
 
 
 @command
