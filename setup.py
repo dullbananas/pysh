@@ -27,7 +27,7 @@ setup(
 		'Environment :: Console',
 		'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
 		'Natural Language :: English',
-		'Operating System :: POSIX',
+		'Operating System :: OS Independent',
 		'Programming Language :: Python :: 3 :: Only',
 		'Topic :: System :: Shells',
 	],
