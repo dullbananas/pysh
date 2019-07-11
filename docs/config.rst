@@ -89,9 +89,9 @@ Here are the values you can use:
 ``{hostname}``
    Your device's hostname
 
-``{platform["*"]}``
+``{platform[*]}``
    Shows the result of the specified function in the ``platform`` module; for
-   example, ``platform["processor"]``
+   example, ``platform[processor]``
 
 ``{shellp_version}``
    The version of ShellP that you are using
@@ -102,7 +102,7 @@ Here are the values you can use:
 ``{symbol}``
    A ``#`` if you are root, otherwise ``$``
 
-``{time["*"]}``
+``{time[*]}``
    The current time formatted with ``time.strftime()``
 
 ``{uid}``

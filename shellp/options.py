@@ -1,8 +1,8 @@
-# Import .shellp/config.py from user directory
 import sys
 import os
 from .parse_bash_aliases import parse_files as parse_aliases
 from . import utils
+
 
 # Define the default options
 options = {
@@ -12,10 +12,11 @@ options = {
 	'debug': False,
 	'env_lists': {},
 	'env_vars': {},
-	'ps1': '{time["%H:%M:%S"]} {cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
+	'ps1': '{time[%H:%M:%S]} {cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,
 }
+
 
 # Load options from config.py if it exists
 def load_config():
@@ -28,6 +29,7 @@ def load_config():
 				options[key] = options[key] | val
 			else:
 				options[key] = val
+	
 	# Load bash aliases
 	options['aliases'] = {**parse_aliases(options['bash_alias_files']), **options['aliases']}
 	# Load environment variables

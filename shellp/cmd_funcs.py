@@ -2,6 +2,7 @@ import traceback
 
 
 def command(f):
+	'''A f**king decorator'''
 	def wrapper(args):
 		try:
 			f(args)

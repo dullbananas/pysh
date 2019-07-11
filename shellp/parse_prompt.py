@@ -1,4 +1,4 @@
-'''Formats PS1 and PS2.'''
+'''Formats PS1'''
 import os
 from .__init__ import __version__
 import beautiful_ansi as style
@@ -10,7 +10,7 @@ from getpass import getuser
 
 class Platform:
 	def __getitem__(self, name):
-		name = name[1:-1] # remove quotes placed by str.format
+		#name = name[1:-1] # remove quotes placed by str.format
 		try:
 			return pf.__dict__[name]()
 		except KeyError:
@@ -18,7 +18,7 @@ class Platform:
 
 class Time:
 	def __getitem__(self, fmt):
-		fmt = fmt[1:-1]
+		#fmt = fmt[1:-1]
 		return strftime(fmt, gmtime())
 
 def parse_prompt(prompt, **kwargs):

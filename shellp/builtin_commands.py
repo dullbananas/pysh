@@ -1,3 +1,5 @@
+'''Defines builtin commands'''
+
 from .cmd_funcs import command
 from . import utils, options
 import os
