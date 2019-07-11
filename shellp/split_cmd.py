@@ -36,7 +36,7 @@ def replace_alias(cmd, aliases):
 	return cmd
 
 
-def split_pipes(cmd, aliases):
+def split_pipes(cmd):
 	result = utils.split_list(cmd, (lambda x: x == '|'))
 	#result = [replace_alias(i, aliases) for i in result]
 	

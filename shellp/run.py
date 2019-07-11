@@ -44,7 +44,7 @@ def main():
 				else:
 					try:
 						if '|' in cmd:
-							pipeline = split_cmd.split_pipes(cmd, options['aliases'])
+							pipeline = split_cmd.split_pipes(cmd)
 							utils.debug(pipeline)
 							run_pipes.run_pipeline(pipeline)
 						else:
