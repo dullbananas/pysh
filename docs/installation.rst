@@ -10,6 +10,9 @@ by opening an issue on ShellP's GitHub repository.
 
 ShellP is compatible with Python 3.6 and newer.
 
+.. versionchanged:: 0.2.0
+   ShellP now only works on Unix
+
 
 Installation
 ------------
