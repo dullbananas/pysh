@@ -7,4 +7,5 @@ ShellP has many features, some of which do not exist in other shells:
    :maxdepth: 1
    
    arg_funcs
+   input
    pipes
