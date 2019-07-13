@@ -1,4 +1,4 @@
-PHONY: cov, test, travisbuild
+PHONY: cov, test, travisbuild, build-pkg
 
 travisbuild:
 	coverage run --source shellp -m pytest -v
@@ -11,3 +11,6 @@ test:
 cov:
 	coverage run --source shellp -m pytest
 	coverage html
+
+build-pkg:
+	./setup.py bdist_wheel
