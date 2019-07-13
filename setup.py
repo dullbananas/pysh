@@ -34,6 +34,9 @@ setup(
 	python_requires='>=3.6',
 	install_requires=[
 		'beautiful-ansi',
-		'pygit2'
+		'prompt_toolkit>1',
+		'pygit2',
+		'pygments>=0.6'
+		'timeoutcontext',
 	],
 )

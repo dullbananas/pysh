@@ -12,6 +12,7 @@ options = {
 	'debug': False,
 	'env_lists': {},
 	'env_vars': {},
+	'highlight_style': 'monokai',
 	'ps1': '{time[%H:%M:%S]} {cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
 	'ps2': '{style.yellow}> ',
 	'timeout': 0,

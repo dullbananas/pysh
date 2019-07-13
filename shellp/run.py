@@ -6,18 +6,45 @@ def main():
 	
 	from .options import options
 	import sys
+	import os
 	from .parse_prompt import parse_prompt
-	from .read_cmd import read_cmd
 	import time
 	import subprocess
 	import traceback
+	
+	from timeoutcontext import timeout
+	from prompt_toolkit import PromptSession, ANSI
+	from prompt_toolkit.lexers import PygmentsLexer
+	from prompt_toolkit.styles.pygments import style_from_pygments_cls
+	from prompt_toolkit.history import FileHistory
+	from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+	
+	from pygments.lexers.shell import BashLexer
+	from pygments.styles import get_style_by_name
+	
 	from . import builtin_commands, utils, run_pipes, split_cmd
+	
+	# Create history file
+	open(os.path.expanduser('~/.shellp/history'), 'a').close()
+	
+	# Initialize PromptSession object
+	psession = PromptSession(
+		lexer=PygmentsLexer(BashLexer),
+		include_default_pygments_style=False,
+		history=FileHistory(os.path.expanduser('~/.shellp/history')),
+		mouse_support=True,
+		auto_suggest=AutoSuggestFromHistory(),
+	)
 	
 	while True:
 		# get input from user
 		try:
 			prompt = parse_prompt(options['ps1'], exec_time=round(elapsed,1))
-			cmd = read_cmd(prompt, options['timeout'])
+			prompt = ANSI(prompt)
+			highlight_style = style_from_pygments_cls(get_style_by_name(options['highlight_style']))
+			with timeout(options['timeout']):
+				cmd = psession.prompt(prompt, style=highlight_style)
+			
 			# Get individual arguments of the inputted command
 			cmd = split_cmd.split_cmd(cmd)
 			#print(cmd)
@@ -28,6 +55,10 @@ def main():
 		except EOFError:
 			print('exit')
 			sys.exit(0)
+		except TimeoutError:
+			print('\nTimeout exceeded ({} seconds)'.format(options['timeout']))
+		except ValueError as e:
+			print('Invalid command: '+str(e))
 		
 		else:
 			if options['debug']:

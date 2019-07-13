@@ -73,6 +73,14 @@ These are the options that you can use in your config file:
    
    .. versionadded:: 0.1.0
 
+``highlight_style``
+   This specifies the name of a built-in Pygments style to use for highlighting
+   commands as you type. The default style is ``monokai``. See `this page
+   <http://pygments.org/demo/6850930/>`_ to try out different styles. Only
+   numbers and quoted strings will appear a different color.
+   
+   .. versionadded:: 0.2.0
+
 ``ps1``
    This is the prompt that is shown before the command you type. See `Prompt
    Format`_ for details on the format of this option.
