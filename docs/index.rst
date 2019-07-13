@@ -1,5 +1,5 @@
-ShellP Version |release|
-=================
+ShellP |release| Documentation
+==============================
 
 ShellP is an easy to use shell implemented completely in Python.
 
