@@ -3,7 +3,7 @@ Argument Functions
 
 Here is an example showing what this feature does:
 
-.. code-block: bash
+.. code-block:: bash
 
    $ echo $$func_name
    func_return_value
