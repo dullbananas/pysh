@@ -49,16 +49,17 @@ pygments_style = 'autumn'
 
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-	'github_button': True,
-	'github_user': 'dullbananas',
-	'github_repo': 'shellp',
-	'show_relbars': True,
+	'canonical_url': 'https://shellp.readthedocs.io/en/latest/',
+	'collapse_navigation': False,
+	'navigation_depth': -1,
+	'prev_next_buttons_location': 'both',
+	'style_external_links': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
