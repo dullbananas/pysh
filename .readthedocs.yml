@@ -5,4 +5,4 @@ python:
     - requirements: docs/requirements.txt
 sphinx:
   configuration: docs/conf.py
-  fail_on_warning: true
+  fail_on_warning: false

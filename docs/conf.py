@@ -27,7 +27,7 @@ extensions = [
 ]
 
 # Warn when there are references whose targets cannot be found
-#nitpicky = True
+nitpicky = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
