@@ -51,12 +51,16 @@ pygments_style = 'autumn'
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
 
+# My logo is better than yours
+html_logo = 'img/logo_white.svg'
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
 	'canonical_url': 'https://shellp.readthedocs.io/en/latest/',
 	'collapse_navigation': False,
+	'logo_only': True,
 	'navigation_depth': -1,
 	'prev_next_buttons_location': 'both',
 	'style_external_links': True,
