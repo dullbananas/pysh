@@ -9,7 +9,7 @@
 
 # ShellP
 Click here to watch a demo:
-[![asciicast](https://asciinema.org/a/257573.svg)](https://asciinema.org/a/257573)
+[![asciicast](https://asciinema.org/a/257576.svg)](https://asciinema.org/a/257576)
 ShellP is a shell implemented in Python and currently in alpla stage of development. This is an example shell session that utilizes [argument functions](https://shellp.readthedocs.io/en/latest/features/arg_funcs.html):
 
 ```
