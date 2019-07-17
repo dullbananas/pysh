@@ -1,6 +1,13 @@
 '''Main script'''
 
 
+import atexit
+import os
+@atexit.register
+def reset_term():
+	os.system('stty sane')
+
+
 def main():
 	elapsed = 0
 	
@@ -47,7 +54,6 @@ def main():
 					cmd = psession.prompt(prompt, style=highlight_style)
 				except KeyError:
 					# Make sure that the terminal doesn't get messed up on timeout
-					os.system('stty sane')
 					sys.exit()
 			
 			# Get individual arguments of the inputted command
