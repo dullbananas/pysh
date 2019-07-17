@@ -43,7 +43,12 @@ def main():
 			prompt = ANSI(prompt)
 			highlight_style = style_from_pygments_cls(get_style_by_name(options['highlight_style']))
 			with timeout(options['timeout']):
-				cmd = psession.prompt(prompt, style=highlight_style)
+				try:
+					cmd = psession.prompt(prompt, style=highlight_style)
+				except KeyError:
+					# Make sure that the terminal doesn't get messed up on timeout
+					os.system('stty sane')
+					sys.exit()
 			
 			# Get individual arguments of the inputted command
 			cmd = split_cmd.split_cmd(cmd)
