@@ -4,7 +4,7 @@ from .parse_bash_aliases import parse_files as parse_aliases
 from . import utils
 
 
-# Define the default options
+# Initialize default configuration
 options = {
 	'aliases': {},
 	'arg_funcs': {},
@@ -36,8 +36,7 @@ def load_config():
 	# Load environment variables
 	os.environ = {**os.environ, **options['env_vars']}
 	# Load environment lists
-	for name in options['env_lists'].keys():
-		value_set = options['env_lists'][name] # The list/tuple/etc. of values to be joined by colons
+	for name, value_set in options['env_lists'].items():
 		try:
 			if not os.environ[name].startswith(':'):
 				os.environ[name] = ':' + os.environ[name]
