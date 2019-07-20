@@ -10,7 +10,7 @@ An easy to use and configure shell that increases productivity
 
 [![asciicast](https://asciinema.org/a/257576.svg)](https://asciinema.org/a/257576)
 
-ShellP is a shell implemented in Python and currently in alpla stage of development that has lots of unique features
+ShellP is a shell implemented in Python and currently in alpla stage of development that has lots of unique features, like auto-suggestion, syntax highlighting, editing commands using your mouse, and cleaner PS1 configuration.
 
 ## Usage
 Install ShellP:
