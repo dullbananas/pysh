@@ -1,35 +1,18 @@
+# ShellP
+An easy to use and configure shell that increases productivity
+
 ![build](https://img.shields.io/travis/dullbananas/shellp/develop.svg)
 ![Read the Docs (version)](https://img.shields.io/readthedocs/shellp/develop.svg)
 ![Codacy branch coverage](https://img.shields.io/codacy/coverage/0d67da41aecc427d82b8a0e7b6747f83/develop.svg)
 ![Codacy branch grade](https://img.shields.io/codacy/grade/0d67da41aecc427d82b8a0e7b6747f83/develop.svg)
-![license](https://img.shields.io/github/license/dullbananas/shellp.svg?color=blue)
-![pypi](https://img.shields.io/pypi/v/shellp.svg?color=blue)
-![PyPI - Status](https://img.shields.io/pypi/status/shellp.svg?color=blue)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/shellp.svg)
+![License](https://img.shields.io/github/license/dullbananas/shellp.svg?color=blue)
+![PyPI Version](https://img.shields.io/pypi/v/shellp.svg?color=blue)
 
-# ShellP
-Click here to watch a demo:
 [![asciicast](https://asciinema.org/a/257576.svg)](https://asciinema.org/a/257576)
-ShellP is a shell implemented in Python and currently in alpla stage of development. This is an example shell session that utilizes [argument functions](https://shellp.readthedocs.io/en/latest/features/arg_funcs.html):
 
-```
-$ echo $$random
-64
-$ echo $$random
-40
-$ echo $$tempfile
-/tmp/my_temp_file.txt
-$ echo $$weekday
-Thursday
-```
+ShellP is a shell implemented in Python and currently in alpla stage of development that has lots of unique features, like auto-suggestion, syntax highlighting, editing commands using your mouse, and cleaner PS1 configuration.
 
-## Advantages over other shells
-  * Easy to configure (e.g. PS1 value is more readable and easier to make yourself)
-  * Easy to install without root access
-  * Variety of values that you can use for PS1, including git branch and execution duration of previous command
-
-
-## Basic Usage
+## Usage
 Install ShellP:
 
 ```
@@ -41,6 +24,8 @@ Start ShellP:
 ```
 python3 -m shellp
 ```
+
+Use `exit` or Ctrl-D to exit
 
 ## Project Links
   * [Documentation](https://shellp.readthedocs.io/en/latest/)
