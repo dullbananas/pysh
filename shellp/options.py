@@ -1,47 +1,44 @@
-import sys
+from . import importer, utils
+from .parse_bash import parse_aliases
 import os
-from .parse_bash_aliases import parse_files as parse_aliases
-from . import utils
 
 
-# Initialize default configuration
-options = {
+defaults = {
 	'aliases': {},
 	'arg_funcs': {},
 	'bash_alias_files': [],
 	'debug': False,
 	'env_lists': {},
 	'env_vars': {},
+	'extensions': [],
 	'highlight_style': 'monokai',
-	'ps1': '{time[%H:%M:%S]} {cwd} {git_branch} {style.bold}{style.lightgreen}{symbol} ',
-	'ps2': '{style.yellow}> ',
+	'ps1': '\n{lightgreen}{symbol} ',
+	'ps2': '{lightblue}> ',
 	'timeout': 0,
 }
 
 
-# Load options from config.py if it exists
-def load_config():
-	if '--no-user-config' not in sys.argv and '-U' not in sys.argv:
-		config = utils.dot_shellp('config')
-		# Iterate through items defined in config.py
-		for key, val in config.__dict__.items():
-			# If the option type is a set, then merge the user's option with the default one
-			if isinstance(val, set) and key in options.keys():
-				options[key] = options[key] | val
-			else:
-				options[key] = val
+options = {}
+def load_options():
+	# Load options dictionary
+	global options, original_env
+	options = importer.load_config(defaults)
 	
-	# Load bash aliases
-	options['aliases'] = {**parse_aliases(options['bash_alias_files']), **options['aliases']}
-	# Load environment variables
+	# Load env_vars
 	os.environ = {**os.environ, **options['env_vars']}
-	# Load environment lists
-	for name, value_set in options['env_lists'].items():
+	
+	# Load env_lists
+	for name, values in options['env_lists'].items():
+		if name in os.environ:
+			current_values = os.environ[name].split(':')
+			values = filter((lambda x: x not in current_values), values)
+			os.environ[name] = ':'.join(values + current_values)
+	
+	# Load bash aliases
+	for filename in options['bash_alias_files']:
 		try:
-			if not os.environ[name].startswith(':'):
-				os.environ[name] = ':' + os.environ[name]
-		except KeyError:
-			os.environ[name] = ''
-		os.environ[name] = ':'.join(value_set) + os.environ[name]
-
-load_config()
+			script = utils.read_file(filename)
+		except OSError:
+			utils.error(f'Cannot read bash alias file: {filename}')
+			continue
+		options['aliases'] = {**options['aliases'], **parse_aliases(script)}
