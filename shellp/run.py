@@ -31,7 +31,11 @@ def main():
 	
 	from . import builtin_commands, utils, run_pipes, split_cmd
 	
-	# Create history file
+	# Create history file and ~/.shellp dir
+	try:
+		os.mkdir(os.path.expanduser('~/.shellp'))
+	except FileExistsError:
+		pass
 	open(os.path.expanduser('~/.shellp/history'), 'a').close()
 	
 	# Initialize PromptSession object
