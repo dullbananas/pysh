@@ -1,6 +1,7 @@
 from .__init__ import __version__
 from .interpreter import Interpreter
 import sys
+from .options import options
 
 
 def main(interactive, use_user_config):
@@ -19,10 +20,7 @@ def main(interactive, use_user_config):
 	
 	while True:
 		try:
-			if interactive:
-				prompt = '$ '
-			else:
-				prompt = ''
+			prompt = ''.join([i.get_str() for i in options['prompt']])
 			cmd = input(prompt)
 			interpreter.feed_line(cmd)
 		except EOFError:
