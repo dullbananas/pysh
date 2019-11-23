@@ -1,16 +1,12 @@
-import os
 from abc import ABC, abstractmethod
+import subprocess
 
 
 
-class Operator:
-	def __init__(self)
-
-
-
-class Process(ABC):
-	def __init__(self, args):
+class Proc(ABC):
+	def __init__(self, args, chain):
 		self.args = args
+		self.chain = chain
 	
 	
 	@abstractmethod
@@ -19,6 +15,7 @@ class Process(ABC):
 
 
 
-class RealProcess(Process):
-	def run(self, stdin, stdout):
-		
+class RealProc(Proc):
+	def run(self, stdin, stdout, stderr):
+		p = subprocess.Popen(self.args, stdin=stdin, stdout=stdout, stderr=stderr)
+		p.wait()
