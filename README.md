@@ -8,6 +8,9 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/shellp.svg)
 
 # ShellP
+
+**This project has been discontinued due to development issues. I might start working on a new shell soon, though. See my profile to see if I have started working on it**
+
 Click here to watch a demo:
 [![asciicast](https://asciinema.org/a/257576.svg)](https://asciinema.org/a/257576)
 ShellP is a shell implemented in Python and currently in alpla stage of development. This is an example shell session that utilizes [argument functions](https://shellp.readthedocs.io/en/latest/features/arg_funcs.html):
